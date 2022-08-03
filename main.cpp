@@ -216,7 +216,6 @@ IntType& IntType::divide(int num)
     if(num == 0)
     {
         std::cout << "error: integer division by zero is an error and will crash the program!"<< std::endl;
-        return *this;
     }
 
     *value /= num;
