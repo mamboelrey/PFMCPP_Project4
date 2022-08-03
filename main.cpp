@@ -117,6 +117,11 @@ struct IntType
     IntType& multiply(int num);
     IntType& divide(int num);
 
+    IntType& add(const IntType& ft);
+    IntType& subtract(const IntType& ft);
+    IntType& multiply(const IntType& ft);
+    IntType& divide(const IntType& ft);
+
     IntType& add(const FloatType& ft);
     IntType& subtract(const FloatType& ft);
     IntType& multiply(const FloatType& ft);
@@ -151,6 +156,11 @@ struct DoubleType
     DoubleType& multiply(const FloatType& ft);
     DoubleType& divide(const FloatType& ft);
 
+    DoubleType& add(const DoubleType& ft);
+    DoubleType& subtract(const DoubleType& ft); 
+    DoubleType& multiply(const DoubleType& ft);
+    DoubleType& divide(const DoubleType& ft);
+
     DoubleType(double input): value(new double(input)){}
 
     ~DoubleType(){delete value;}
@@ -170,6 +180,11 @@ struct FloatType
     FloatType& subtract(const IntType& it);
     FloatType& multiply(const IntType& it);
     FloatType& divide(const IntType& it);
+
+    FloatType& add(const FloatType& it);
+    FloatType& subtract(const FloatType& it);
+    FloatType& multiply(const FloatType& it);
+    FloatType& divide(const FloatType& it);
 
     FloatType& add(const DoubleType& dt);
     FloatType& subtract(const DoubleType& dt);
@@ -210,6 +225,29 @@ IntType& IntType::divide(int num)
 
     *value /= num;
     return *this;
+}
+
+IntType& IntType::add(const IntType& it)
+{
+    return add(*it.value);
+}
+IntType& IntType::subtract(const IntType& it)
+{
+    return subtract(*it.value);
+}
+IntType& IntType::multiply(const IntType& it)
+{
+    return multiply(*it.value);
+}
+IntType& IntType::divide(const IntType& it)
+{
+    if(*it.value == 0)
+    {
+        std::cout << "error: integer division by zero is an error and will crash the program!"<< std::endl;
+        return *this;
+    }
+    
+    return divide(*it.value);
 }
 
 IntType& IntType::add(const FloatType& ft)
@@ -338,6 +376,29 @@ DoubleType& DoubleType::divide(const IntType& it)
 }
 
 
+DoubleType& DoubleType::add(const DoubleType& dt)
+{
+    return add(*dt.value);
+}
+
+DoubleType& DoubleType::subtract(const DoubleType& dt)
+{
+    return subtract(*dt.value);
+}
+DoubleType& DoubleType::multiply(const DoubleType& dt)
+{
+    return multiply(*dt.value);
+}
+DoubleType& DoubleType::divide(const DoubleType& dt)
+{
+    if(*dt.value == 0.0)
+    {
+        std::cout << "warning: floating point division by zero!"<< std::endl;
+    }
+    return divide(*dt.value);
+}
+
+
 
 FloatType& FloatType::add(float num)
 {
@@ -390,6 +451,30 @@ FloatType& FloatType::divide(const IntType& it)
     }
     
     return divide(*it.value);
+}
+
+FloatType& FloatType::add(const FloatType& ft)
+{
+    return add(*ft.value);
+}
+
+FloatType& FloatType::subtract(const FloatType& ft)
+{
+    return subtract(*ft.value);
+}
+
+FloatType& FloatType::multiply(const FloatType& ft)
+{
+    return multiply(*ft.value);
+}
+FloatType& FloatType::divide(const FloatType& ft)
+{
+    if(*ft.value == 0.0f)
+    {
+        std::cout << "warning: floating point division by zero!"<< std::endl;
+    }
+    
+    return divide(*ft.value);
 }
 
 FloatType& FloatType::add(const DoubleType& dt)
