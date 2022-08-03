@@ -136,7 +136,6 @@ struct IntType
     ~IntType(){delete value;}
 
     int* value = nullptr;
-
 };
 
 struct DoubleType
@@ -162,11 +161,9 @@ struct DoubleType
     DoubleType& divide(const DoubleType& ft);
 
     DoubleType(double input): value(new double(input)){}
-
     ~DoubleType(){delete value;}
 
     double* value = nullptr;
-    
 };
 
 struct FloatType
@@ -191,27 +188,25 @@ struct FloatType
     FloatType& multiply(const DoubleType& dt);
     FloatType& divide(const DoubleType& dt);
 
-    float* value = nullptr;
     FloatType(float input): value(new float(input)){}
     ~FloatType(){ delete value;}
+    
+    float* value = nullptr;
 };
 
 IntType& IntType::add(int num)
 {
     *value += num;
-
     return *this;
 }
 IntType& IntType::subtract(int num)
 {
     *value -= num;
-
     return *this;
 }
 IntType& IntType::multiply(int num)
 {
     *value *= num;
-    
     return *this;
 }
 
@@ -300,21 +295,18 @@ IntType& IntType::divide(const DoubleType& dt)
 DoubleType& DoubleType::add(double num)
 {
     *value += num;
-
     return *this;
 }
 
 DoubleType& DoubleType::subtract(double num)
 {
     *value -= num;
-
     return *this;
 }
 
 DoubleType& DoubleType::multiply(double num)
 {
     *value *= num;
-
     return *this;
 }
 
@@ -326,7 +318,6 @@ DoubleType& DoubleType::divide(double num)
     }
 
     *value /= num;
-
     return *this;
 }
 
